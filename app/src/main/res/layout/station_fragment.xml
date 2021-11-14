@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".presentation.station.view.StationFragment">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="br.com.levezcode.demoapp.presentation.station.viewmodel.StationViewModel" />
+    </data>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/background"
+        app:onRefreshListener="@{()-> viewModel.update()}"
+        app:refreshing="@{viewModel.isLoading}"
+        android:fitsSystemWindows="true">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="@dimen/default_padding_horizontal"
+                android:paddingEnd="@dimen/default_padding_horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:gravity="center_horizontal"
+                    android:textAppearance="@style/TextAppearance.Card.Normal"
+                    android:text="@{viewModel.lastUpdate}"
+                    tools:text="Última atualização em 18/09/2021 às 14:20" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/background_resource_card"
+                    android:paddingStart="@dimen/default_padding_horizontal"
+                    android:paddingTop="@dimen/default_padding_vertical"
+                    android:paddingEnd="@dimen/default_padding_horizontal"
+                    android:paddingBottom="@dimen/default_padding_vertical">
+
+                    <ImageView
+                        android:id="@+id/icon_higrometro"
+                        style="@style/IconSensor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/content_description_ic_humidity"
+                        android:src="@drawable/ic_hygrometer"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/hint_higrometro"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/default_padding_horizontal"
+                        android:text="@string/hygrometer"
+                        android:textAppearance="@style/TextAppearance.Card.Title"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/icon_higrometro"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/value_higrometro"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@{Double.toString(viewModel.higrometro.value) + `%`}"
+                        android:textAppearance="@style/TextAppearance.Card.Value"
+                        android:textSize="28sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/hint_higrometro"
+                        app:layout_constraintTop_toBottomOf="@+id/hint_higrometro"
+                        tools:text="24% " />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/default_margin_between_cards"
+                    android:background="@drawable/background_resource_card"
+                    android:paddingStart="@dimen/default_padding_horizontal"
+                    android:paddingTop="@dimen/default_padding_vertical"
+                    android:paddingEnd="@dimen/default_padding_horizontal"
+                    android:paddingBottom="@dimen/default_padding_vertical">
+
+                    <ImageView
+                        android:id="@+id/icon_anemometro"
+                        style="@style/IconSensor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/content_description_ic_anemometer"
+                        android:src="@drawable/ic_anemometer"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/hint_anemometro"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/default_padding_horizontal"
+                        android:text="@string/anemometer"
+                        android:textAppearance="@style/TextAppearance.Card.Title"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/icon_anemometro"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/value_anemometro"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@{Double.toString(viewModel.anemometro.value) + ` Km/h` }"
+                        android:textAppearance="@style/TextAppearance.Card.Value"
+                        android:textSize="28sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/hint_anemometro"
+                        app:layout_constraintTop_toBottomOf="@+id/hint_anemometro"
+                        tools:text="24 Km/h" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/default_margin_between_cards"
+                    android:background="@drawable/background_resource_card"
+                    android:paddingStart="@dimen/default_padding_horizontal"
+                    android:paddingTop="@dimen/default_padding_vertical"
+                    android:paddingEnd="@dimen/default_padding_horizontal"
+                    android:paddingBottom="@dimen/default_padding_vertical">
+
+                    <ImageView
+                        android:id="@+id/icon_luminosidade"
+                        style="@style/IconSensor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/content_description_ic_light"
+                        android:src="@drawable/ic_luminosity"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/hint_luminosidade"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/default_padding_horizontal"
+                        android:text="@string/luminosity"
+                        android:textAppearance="@style/TextAppearance.Card.Title"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/icon_luminosidade"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/value_luminosidade"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@{Double.toString(viewModel.luminosidade.value) + ` lux`}"
+                        android:textAppearance="@style/TextAppearance.Card.Value"
+                        android:textSize="28sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/hint_luminosidade"
+                        app:layout_constraintTop_toBottomOf="@+id/hint_luminosidade"
+                        tools:text="24 lux " />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/default_margin_between_cards"
+                    android:background="@drawable/background_resource_card"
+                    android:paddingStart="@dimen/default_padding_horizontal"
+                    android:paddingTop="@dimen/default_padding_vertical"
+                    android:paddingEnd="@dimen/default_padding_horizontal"
+                    android:paddingBottom="@dimen/default_padding_vertical">
+
+                    <ImageView
+                        android:id="@+id/icon_termometro"
+                        style="@style/IconSensor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/content_description_ic_thermometer"
+                        android:src="@drawable/ic_thermometer"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/hint_termometro"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/default_padding_horizontal"
+                        android:text="@string/thermometer"
+                        android:textAppearance="@style/TextAppearance.Card.Title"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/icon_termometro"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/value_termometro"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@{Double.toString(viewModel.termometro.value) + `˚C`}"
+                        android:textAppearance="@style/TextAppearance.Card.Value"
+                        android:textSize="28sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/hint_termometro"
+                        app:layout_constraintTop_toBottomOf="@+id/hint_termometro"
+                        tools:text="24ºC" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/default_margin_between_cards"
+                    android:background="@drawable/background_resource_card"
+                    android:paddingStart="@dimen/default_padding_horizontal"
+                    android:paddingTop="@dimen/default_padding_vertical"
+                    android:paddingEnd="@dimen/default_padding_horizontal"
+                    android:paddingBottom="@dimen/default_padding_vertical">
+
+                    <ImageView
+                        android:id="@+id/icon_barometro"
+                        style="@style/IconSensor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/content_description_ic_barometer"
+                        android:src="@drawable/ic_barometer"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/hint_barometro"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/default_padding_horizontal"
+                        android:text="@string/barometer"
+                        android:textAppearance="@style/TextAppearance.Card.Title"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/icon_barometro"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/value_barometro"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@{Double.toString(viewModel.barometro.value) + ` hPa`}"
+                        android:textAppearance="@style/TextAppearance.Card.Value"
+                        android:textSize="28sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/hint_barometro"
+                        app:layout_constraintTop_toBottomOf="@+id/hint_barometro"
+                        tools:text="24 hPa" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/default_margin_between_cards"
+                    android:background="@drawable/background_resource_card"
+                    android:paddingStart="@dimen/default_padding_horizontal"
+                    android:paddingTop="@dimen/default_padding_vertical"
+                    android:paddingEnd="@dimen/default_padding_horizontal"
+                    android:paddingBottom="@dimen/default_padding_vertical">
+
+                    <ImageView
+                        android:id="@+id/icon_altimetro"
+                        style="@style/IconSensor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/content_description_ic_altimeter"
+                        android:src="@drawable/ic_altimeter"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/hint_altimetro"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/default_padding_horizontal"
+                        android:text="@string/altimeter"
+                        android:textAppearance="@style/TextAppearance.Card.Title"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/icon_altimetro"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/value_altimetro"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@{Double.toString(viewModel.altimetro.value) + `m`}"
+                        android:textAppearance="@style/TextAppearance.Card.Value"
+                        android:textSize="28sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/hint_altimetro"
+                        app:layout_constraintTop_toBottomOf="@+id/hint_altimetro"
+                        tools:text="24m" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </ScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</layout>

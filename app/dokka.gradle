@@ -1,0 +1,44 @@
+dokkaHtml {
+    outputDirectory.set(file("$rootDir/docs"))
+    suppressObviousFunctions.set(true)
+    failOnWarning.set(false)
+
+    dokkaSourceSets {
+        named("main") {
+            moduleName.set("InterSCity Platform Demo")
+
+            jdkVersion.set(11)
+            platform.set(org.jetbrains.dokka.Platform.jvm)
+            noAndroidSdkLink.set(false)
+            noJdkLink.set(false)
+            reportUndocumented.set(true)
+            skipDeprecated.set(false)
+            includeNonPublic.set(false)
+            skipEmptyPackages.set(true)
+            suppressGeneratedFiles.set(true)
+
+            pluginsMapConfiguration.set(
+                    ["org.jetbrains.dokka.base.DokkaBase": """{ "separateInheritedMembers": true}"""]
+            )
+
+            includes.from("Module.md")
+//            sourceLink {
+//                localDirectory.set(file("src/main/kotlin"))
+//                remoteUrl.set(URL("https://github.com/Kotlin/dokka/tree/master/" +
+//                        "examples/gradle/dokka-gradle-example/src/main/kotlin"
+//                ))
+//                remoteLineSuffix.set("#L")
+//            }
+
+            perPackageOptions {
+                matchingRegex("*presentation*") // TODO ARRUMAR ISSO E ADICIONAR O JACOCO
+                suppress.set(true)
+            }
+
+            perPackageOption {
+                matchingRegex.set("*") // will match all .internal packages and sub-packages
+                suppress.set(true)
+            }
+        }
+    }
+}

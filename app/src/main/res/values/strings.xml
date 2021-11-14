@@ -1,0 +1,43 @@
+<resources>
+    <!--   App Name   -->
+    <string name="app_name">InterSCity Platform Demo</string>
+
+    <!--  Title of screens  -->
+    <string name="title_station">Station</string>
+    <string name="title_sensors">Sensors Standalone</string>
+    <string name="title_maps">Maps</string>
+    <string name="title_iot">IoT</string>
+
+    <!--  Titles  -->
+    <string name="hygrometer">Hygrometer</string>
+    <string name="anemometer">Anemometer</string>
+    <string name="luminosity">Luminosity</string>
+    <string name="thermometer">Thermometer</string>
+    <string name="barometer">Barometer</string>
+    <string name="altimeter">Altimeter</string>
+
+    <!--  Contents description  -->
+    <string name="content_description_ic_humidity">Image of a drop representing the hygrometer.</string>
+    <string name="content_description_ic_light">Icon in lamp format representing the light sensor.</string>
+    <string name="content_description_ic_anemometer">Icon in cloud and wind format representing the anemometer sensor.</string>
+    <string name="content_description_ic_thermometer">Icon representing a thermometer.</string>
+    <string name="content_description_ic_barometer">Icon representing atmospheric pressure.</string>
+    <string name="content_description_ic_altimeter">Icon representing altimeter.</string>
+    <string name="content_description_ic_loading">Button for updating the data. It is shaped like two arrows representing the update.</string>
+    <string name="content_description_ic_iot">Icon representing the IoT Gateway</string>
+
+    <!--  Notifications details  -->
+    <string name="channel_name">IoT Service Status</string>
+    <string name="channel_description">IoT Service notification status.</string>
+    <string name="iot_generating_values_title">Generating</string>
+    <string name="iot_generating_values_description">Generating the values to be sent.</string>
+    <string name="iot_waiting_to_send_title">Waiting</string>
+    <string name="iot_waiting_to_send_description">Waiting for the delay to send simulated data.</string>
+    <string name="iot_sending_title">Sending</string>
+    <string name="iot_sending_description">Sending the simulated data.</string>
+    <string name="iot_starting_title">Starting the service</string>
+    <string name="iot_starting_description">Starting the service to generate and send simulated data.</string>
+    <string name="state">Actual state</string>
+    <string name="last_data_sent">Last data sent</string>
+
+</resources>

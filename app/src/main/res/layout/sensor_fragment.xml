@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".presentation.sensors.view.SensorFragment">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="br.com.levezcode.demoapp.presentation.sensors.viewmodel.SensorViewModel" />
+    </data>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/background"
+        android:fitsSystemWindows="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/default_padding_horizontal"
+            android:paddingEnd="@dimen/default_padding_horizontal">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/default_margin_between_cards"
+                android:background="@drawable/background_resource_card"
+                android:paddingStart="@dimen/default_padding_horizontal"
+                android:paddingTop="@dimen/default_padding_vertical"
+                android:paddingEnd="@dimen/default_padding_horizontal"
+                android:paddingBottom="@dimen/default_padding_vertical">
+
+                <ImageView
+                    android:id="@+id/icon_anemometro"
+                    style="@style/IconSensor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/content_description_ic_anemometer"
+                    android:src="@drawable/ic_anemometer"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/hint_anemometro"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_padding_horizontal"
+                    android:text="@string/anemometer"
+                    android:textAppearance="@style/TextAppearance.Card.Title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/icon_anemometro"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/value_anemometro"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{Double.toString(viewModel.anemometro.value) + ` Km/h` }"
+                    android:textAppearance="@style/TextAppearance.Card.Value"
+                    android:textSize="28sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/hint_anemometro"
+                    app:layout_constraintTop_toBottomOf="@+id/hint_anemometro"
+                    tools:text="24 Km/h" />
+
+
+                <TextView
+                    android:id="@+id/last_update_anemometro"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:gravity="end"
+                    android:text="@{viewModel.anemometro.lastUpdate}"
+                    android:textAppearance="@style/TextAppearance.Card.Normal"
+                    app:layout_constraintEnd_toStartOf="@+id/anemometro_refresh_button"
+                    app:layout_constraintStart_toStartOf="@+id/hint_anemometro"
+                    app:layout_constraintTop_toBottomOf="@+id/value_anemometro"
+                    tools:text="18/09/2021 18:00" />
+
+                <ImageButton
+                    android:id="@+id/anemometro_refresh_button"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:background="@null"
+                    android:contentDescription="@string/content_description_ic_loading"
+                    android:onClick="@{()->viewModel.updateAnemometroData()}"
+                    android:scaleType="center"
+                    android:src="@drawable/ic_loading"
+                    app:isLoading="@{viewModel.isLoadingAnemometro}"
+                    app:layout_constraintBottom_toBottomOf="@id/last_update_anemometro"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/last_update_anemometro" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/default_margin_between_cards"
+                android:background="@drawable/background_resource_card"
+                android:paddingStart="@dimen/default_padding_horizontal"
+                android:paddingTop="@dimen/default_padding_vertical"
+                android:paddingEnd="@dimen/default_padding_horizontal"
+                android:paddingBottom="@dimen/default_padding_vertical">
+
+                <ImageView
+                    android:id="@+id/icon_termometro"
+                    style="@style/IconSensor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/content_description_ic_thermometer"
+                    android:src="@drawable/ic_thermometer"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/hint_termometro"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_padding_horizontal"
+                    android:text="@string/thermometer"
+                    android:textAppearance="@style/TextAppearance.Card.Title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/icon_termometro"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/value_termometro"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{Double.toString(viewModel.termometro.value) + `˚C`}"
+                    android:textAppearance="@style/TextAppearance.Card.Value"
+                    android:textSize="28sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/hint_termometro"
+                    app:layout_constraintTop_toBottomOf="@+id/hint_termometro"
+                    tools:text="24ºC" />
+
+                <TextView
+                    android:id="@+id/last_update_termometro"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:gravity="end"
+                    android:text="@{viewModel.termometro.lastUpdate}"
+                    android:textAppearance="@style/TextAppearance.Card.Normal"
+                    app:layout_constraintEnd_toStartOf="@+id/termometro_refresh_button"
+                    app:layout_constraintStart_toStartOf="@+id/hint_termometro"
+                    app:layout_constraintTop_toBottomOf="@+id/value_termometro"
+                    tools:text="18/09/2021 18:00" />
+
+                <ImageButton
+                    android:id="@+id/termometro_refresh_button"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:background="@null"
+                    android:contentDescription="@string/content_description_ic_loading"
+                    android:onClick="@{()->viewModel.updateTermometroData()}"
+                    android:scaleType="center"
+                    android:src="@drawable/ic_loading"
+                    app:isLoading="@{viewModel.isLoadingTermometro}"
+                    app:layout_constraintBottom_toBottomOf="@id/last_update_termometro"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/last_update_termometro" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
+</layout>
